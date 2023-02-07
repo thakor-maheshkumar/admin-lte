@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -31,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'device_token'
     ];
 
     /**
@@ -54,5 +56,8 @@ class User extends Authenticatable
     public function adminlte_profile_url()
     {
         return 'profile/username';
+    }
+    public function posts(){
+        return $this->hasMany(\App\Models\Post::class,'user_id','id');
     }
 }
